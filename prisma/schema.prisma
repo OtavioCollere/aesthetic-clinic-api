@@ -1,0 +1,135 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String   @id @default(uuid())
+  name          String
+  email         String   @unique
+  password_hash String
+  created_at    DateTime @default(now())
+
+  @@map("users")
+}
+
+model Customer {
+  id                 String   @id @default(uuid())
+  nome               String
+  telefone           String
+  dataNasc           DateTime
+  cpf                String
+  profissao          String?
+  telefoneEmergencia String?
+
+  tratamentoEsteticoAnterior Boolean
+
+  toxinaBotulinica       Boolean
+  toxinaBotulinicaRegiao String?
+
+  preenchimento        Boolean
+  preenchimentoRegiao  String?
+  preenchimentoProduto String?
+
+  fiosDeSustentacao        Boolean
+  fiosDeSustentacaoRegiao  String?
+  fiosDeSustentacaoProduto String?
+
+  liftCirurgico Boolean
+  liftRegiao    String?
+  liftProduto   String?
+
+  peelingQuimico        Boolean
+  peelingQuimicoRegiao  String?
+  peelingQuimicoProduto String?
+
+  laser        Boolean
+  laserRegiao  String?
+  laserProduto String?
+
+  trabalhoExposto        Boolean
+  trabalhoExpostoRegiao  String?
+  trabalhoExpostoProduto String?
+
+  usaMedicamento     Boolean
+  usaMedicamentoQual String?
+
+  alergia             Boolean
+  gestanteOuLactante  Boolean
+  intoleranciaLactose Boolean
+  diabetes            Boolean
+  roacutam            Boolean
+
+  fumante                        Boolean
+  disturbioCirculatorio          Boolean
+  epilepsia                      Boolean
+  cicloMenstrualRegular          Boolean
+  funcionamentoIntestinalRegular Boolean
+
+  tratamentoMedico         Boolean
+  tratamentoMedicoDetalhes String?
+
+  cirurgiaRecente         Boolean
+  cirurgiaRecenteDetalhes String?
+
+  problemasDePele         Boolean
+  problemasDePeleDetalhes String?
+
+  proteseCorporalOuFacial         Boolean
+  proteseCorporalOuFacialDetalhes String?
+
+  gestantes         Boolean
+  gestantesDetalhes String?
+
+  tumor         Boolean
+  tumorDetalhes String?
+
+  problemaOrtopedico         Boolean
+  problemaOrtopedicoDetalhes String?
+
+  utilizandoAcidos         Boolean
+  utilizandoAcidosDetalhes String?
+
+  observacaoProblema String?
+
+  created_at  DateTime      @default(now())
+  Appointment Appointment[]
+  Procedure   Procedure[]
+
+  @@map("customers")
+}
+
+model Procedure {
+  id               String   @id @default(uuid())
+  nome             String
+  valor            Float
+  produto          String?
+  dataProcedimento DateTime
+  created_at       DateTime @default(now())
+
+  customer   Customer @relation(fields: [customerId], references: [id])
+  customerId String
+
+  @@map("procedures")
+}
+
+model Appointment {
+  id          String   @id @default(uuid())
+  dataMarcada DateTime
+  created_at  DateTime @default(now())
+
+  customer   Customer @relation(fields: [customerId], references: [id])
+  customerId String
+
+  @@map("appointments")
+}
