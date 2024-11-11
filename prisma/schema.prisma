@@ -5,131 +5,132 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client-js"
+    provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
 }
 
 model User {
-  id            String   @id @default(uuid())
-  name          String
-  email         String   @unique
-  password_hash String
-  created_at    DateTime @default(now())
+    id            String   @id @default(uuid())
+    name          String
+    email         String   @unique
+    password_hash String
+    created_at    DateTime @default(now())
 
-  @@map("users")
+    @@map("users")
 }
 
 model Customer {
-  id                 String   @id @default(uuid())
-  nome               String
-  telefone           String
-  dataNasc           DateTime
-  cpf                String
-  profissao          String?
-  telefoneEmergencia String?
+    id                 String   @id @default(uuid())
+    nome               String
+    telefone           String
+    dataNasc           DateTime
+    cpf                String
+    profissao          String?
+    telefoneEmergencia String?
 
-  tratamentoEsteticoAnterior Boolean
+    tratamentoEsteticoAnterior Boolean
 
-  toxinaBotulinica       Boolean
-  toxinaBotulinicaRegiao String?
+    toxinaBotulinica       Boolean
+    toxinaBotulinicaRegiao String?
 
-  preenchimento        Boolean
-  preenchimentoRegiao  String?
-  preenchimentoProduto String?
+    preenchimento        Boolean
+    preenchimentoRegiao  String?
+    preenchimentoProduto String?
 
-  fiosDeSustentacao        Boolean
-  fiosDeSustentacaoRegiao  String?
-  fiosDeSustentacaoProduto String?
+    fiosDeSustentacao        Boolean
+    fiosDeSustentacaoRegiao  String?
+    fiosDeSustentacaoProduto String?
 
-  liftCirurgico Boolean
-  liftRegiao    String?
-  liftProduto   String?
+    liftCirurgico Boolean
+    liftRegiao    String?
+    liftProduto   String?
 
-  peelingQuimico        Boolean
-  peelingQuimicoRegiao  String?
-  peelingQuimicoProduto String?
+    peelingQuimico        Boolean
+    peelingQuimicoRegiao  String?
+    peelingQuimicoProduto String?
 
-  laser        Boolean
-  laserRegiao  String?
-  laserProduto String?
+    laser        Boolean
+    laserRegiao  String?
+    laserProduto String?
 
-  trabalhoExposto        Boolean
-  trabalhoExpostoRegiao  String?
-  trabalhoExpostoProduto String?
+    trabalhoExposto        Boolean
+    trabalhoExpostoRegiao  String?
+    trabalhoExpostoProduto String?
 
-  usaMedicamento     Boolean
-  usaMedicamentoQual String?
+    usaMedicamento     Boolean
+    usaMedicamentoQual String?
 
-  alergia             Boolean
-  gestanteOuLactante  Boolean
-  intoleranciaLactose Boolean
-  diabetes            Boolean
-  roacutam            Boolean
+    alergia             Boolean
+    gestanteOuLactante  Boolean
+    intoleranciaLactose Boolean
+    diabetes            Boolean
+    roacutam            Boolean
 
-  fumante                        Boolean
-  disturbioCirculatorio          Boolean
-  epilepsia                      Boolean
-  cicloMenstrualRegular          Boolean
-  funcionamentoIntestinalRegular Boolean
+    fumante                        Boolean
+    disturbioCirculatorio          Boolean
+    epilepsia                      Boolean
+    cicloMenstrualRegular          Boolean
+    funcionamentoIntestinalRegular Boolean
 
-  tratamentoMedico         Boolean
-  tratamentoMedicoDetalhes String?
+    tratamentoMedico         Boolean
+    tratamentoMedicoDetalhes String?
 
-  cirurgiaRecente         Boolean
-  cirurgiaRecenteDetalhes String?
+    cirurgiaRecente         Boolean
+    cirurgiaRecenteDetalhes String?
 
-  problemasDePele         Boolean
-  problemasDePeleDetalhes String?
+    problemasDePele         Boolean
+    problemasDePeleDetalhes String?
 
-  proteseCorporalOuFacial         Boolean
-  proteseCorporalOuFacialDetalhes String?
+    proteseCorporalOuFacial         Boolean
+    proteseCorporalOuFacialDetalhes String?
 
-  gestantes         Boolean
-  gestantesDetalhes String?
+    gestantes         Boolean
+    gestantesDetalhes String?
 
-  tumor         Boolean
-  tumorDetalhes String?
+    tumor         Boolean
+    tumorDetalhes String?
 
-  problemaOrtopedico         Boolean
-  problemaOrtopedicoDetalhes String?
+    problemaOrtopedico         Boolean
+    problemaOrtopedicoDetalhes String?
 
-  utilizandoAcidos         Boolean
-  utilizandoAcidosDetalhes String?
+    utilizandoAcidos         Boolean
+    utilizandoAcidosDetalhes String?
 
-  observacaoProblema String?
+    observacaoProblema String?
 
-  created_at  DateTime      @default(now())
-  Appointment Appointment[]
-  Procedure   Procedure[]
+    created_at  DateTime      @default(now())
+    Appointment Appointment[]
+    Procedure   Procedure[]
 
-  @@map("customers")
+    @@map("customers")
 }
 
 model Procedure {
-  id               String   @id @default(uuid())
-  nome             String
-  valor            Float
-  produto          String?
-  dataProcedimento DateTime
-  created_at       DateTime @default(now())
+    id               String   @id @default(uuid())
+    nome             String
+    regiao           String
+    valor            Float
+    produto          String?
+    dataProcedimento DateTime
+    created_at       DateTime @default(now())
 
-  customer   Customer @relation(fields: [customerId], references: [id])
-  customerId String
+    customer   Customer @relation(fields: [customerId], references: [id])
+    customerId String
 
-  @@map("procedures")
+    @@map("procedures")
 }
 
 model Appointment {
-  id          String   @id @default(uuid())
-  dataMarcada DateTime
-  created_at  DateTime @default(now())
+    id          String   @id @default(uuid())
+    dataMarcada DateTime
+    created_at  DateTime @default(now())
 
-  customer   Customer @relation(fields: [customerId], references: [id])
-  customerId String
+    customer   Customer @relation(fields: [customerId], references: [id])
+    customerId String
 
-  @@map("appointments")
+    @@map("appointments")
 }
