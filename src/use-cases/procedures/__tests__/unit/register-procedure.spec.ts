@@ -4,7 +4,7 @@ import { ProcedureRepository } from '@/repositories/procedure-repository'
 import { CustomerRepository } from '@/repositories/customer-repository'
 import { InMemoryProcedureRepository } from '@/repositories/in-memory/in-memory-procedure-repository'
 import { InMemoryCustomerRepository } from '@/repositories/in-memory/in-memory-customer-repository'
-import { createGeneralCustomerData } from '@/use-cases/__tests__/helpers/CreateGeneralCustomerData'
+import { createGeneralCustomerData } from '@/use-cases/customers/__tests__/helpers/CreateGeneralCustomerData'
 import { CustomerNotFoundError } from '@/use-cases/errors/customer-not-found-error'
 
 describe('Register Procedure Use Case unit tests', () => {
