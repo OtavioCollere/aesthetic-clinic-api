@@ -5,8 +5,13 @@ Aesthetic-Clinic-API developed with NodeJS + PrismaORM + Vitest + Typescript
 [x] - Cadastrar um cliente
 [x] - Listar clientes
 [] - Listar com filtros
-[] - Buscar dados de um cliente
+[x] - Buscar dados de um cliente
 
-[] - Cadastrar um procedimento
+[x] - Cadastrar um procedimento
 [] - Listar procedimentos com filtros
-[] - Buscar dados de um procedimento
+[x] - Buscar dados de um procedimento
+[] - Buscar dados de um procedimento atraves do id do cliente
+
+[] - Cadastrar um agendamento
+[] - Editar um agendamento
+[] - Excluir um agendamento

@@ -21,14 +21,11 @@ export class InMemoryProcedureRepository implements ProcedureRepository {
     return procedure
   }
 
-  async findByCustomerId(customer_id: string) {
-    const procedure = this.items.find((item) => item.customerId === customer_id)
-
-    if (!procedure) {
-      return null
-    }
-
-    return procedure
+  async findByCustomerId(customer_id: string): Promise<Procedure[]> {
+    const procedures = this.items.filter(
+      (item) => item.customerId === customer_id,
+    )
+    return procedures
   }
 
   async create(data: Prisma.ProcedureUncheckedCreateInput) {

@@ -32,7 +32,7 @@ describe('Register Procedure Use Case unit tests', () => {
     })
 
     const { procedure } = await sut.execute({
-      nome: 'Otavio',
+      nome: 'botox',
       regiao: 'Facial',
       valor: 1200,
       produto: 'Paraguai',
@@ -42,7 +42,7 @@ describe('Register Procedure Use Case unit tests', () => {
     })
 
     expect(procedure).toHaveProperty('id')
-    expect(procedure.nome).toStrictEqual('Otavio')
+    expect(procedure.nome).toStrictEqual('botox')
     expect(procedure.customerId).toStrictEqual(customer.id)
   })
 
@@ -57,7 +57,7 @@ describe('Register Procedure Use Case unit tests', () => {
 
     await expect(() =>
       sut.execute({
-        nome: 'Otavio',
+        nome: 'botox',
         regiao: 'Facial',
         valor: 1200,
         produto: 'Paraguai',
