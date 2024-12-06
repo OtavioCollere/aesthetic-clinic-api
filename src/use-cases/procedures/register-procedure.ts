@@ -9,7 +9,6 @@ interface RegisterProcedureUseCaseRequest {
   valor: number
   produto?: string
   dataProcedimento: Date
-  created_at: Date
   customerId: string
 }
 
@@ -39,7 +38,6 @@ export class RegisterProcedureUseCase {
       valor: data.valor,
       produto: data.produto ?? null,
       dataProcedimento: data.dataProcedimento,
-      created_at: data.created_at,
       customerId: data.customerId,
     })
 
